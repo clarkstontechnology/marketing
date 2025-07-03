@@ -156,10 +156,10 @@ killall node
 
 #### Testing
 - E2E tests go in tests/e2e/
+- Focus on functional testing (behavior over appearance)
 - Use Playwright's built-in waiting mechanisms
-- Include visual regression tests for key pages
-- First run creates baselines, use `--update-snapshots` to update
-- Different reporters: HTML for manual review, line reporter for CI
+- Test across multiple browsers and devices
+- Different reporters: HTML for manual review, line reporter for CI/agents
 
 ### Scripts
 

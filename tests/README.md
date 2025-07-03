@@ -4,7 +4,7 @@ This directory contains automated tests for the marketing platform sites.
 
 ## E2E Tests (Playwright)
 
-End-to-end tests are located in the `e2e/` directory and use Playwright for browser automation.
+End-to-end tests are located in the `e2e/` directory and use Playwright for browser automation. **The test suite focuses on functional testing** to ensure all features work correctly across different browsers and devices.
 
 ### Reporter Configuration
 
@@ -38,9 +38,6 @@ npx playwright test --project=chromium
 npx playwright test --project=firefox
 npx playwright test --project=webkit
 
-# Update visual regression snapshots
-npx playwright test --update-snapshots
-
 # For agents/CI (uses line reporter)
 AGENT_RUN=true npx playwright test
 ```
@@ -66,6 +63,23 @@ tests/
 └── README.md
 ```
 
+## Test Coverage
+
+The E2E tests cover these functional areas:
+
+### Core Functionality
+- **Homepage Loading**: Verifies all key elements load correctly
+- **Navigation**: Tests site navigation across different pages
+- **Contact Form**: Validates form submission and error handling
+- **Responsive Design**: Ensures proper behavior across screen sizes
+- **Link Validation**: Checks all links have proper hrefs
+
+### Performance & Quality
+- **Page Performance**: Measures and validates load times
+- **Accessibility**: Basic accessibility checks (headings, alt text)
+- **SEO**: Validates meta descriptions and proper markup
+- **Error Handling**: Tests user feedback and error states
+
 ### Writing New Tests
 
 1. Create a new `.spec.ts` file in the `e2e/` directory
@@ -73,23 +87,21 @@ tests/
    ```typescript
    import { test, expect } from '@playwright/test';
    ```
-3. Write your tests using the Playwright API
-4. Run tests to ensure they pass
-
-### Visual Regression Testing
-
-The tests include visual regression checks that compare screenshots against baseline images:
-
-- First run creates baseline images in `tests/e2e/*.spec.ts-snapshots/`
-- Subsequent runs compare against these baselines
-- To update baselines: `npx playwright test --update-snapshots`
+3. Focus on **functional behavior** rather than visual appearance
+4. Write tests that verify:
+   - User interactions work correctly
+   - Forms validate and submit properly
+   - Navigation functions as expected
+   - Content loads and displays
+   - Error states are handled
 
 ### CI/CD Integration
 
 Tests are configured to run in CI with:
 - Retries on failure
-- Parallel execution disabled
+- Parallel execution across browsers
 - Artifacts saved on failure
+- Fast feedback for development teams
 
 ### Debugging
 
@@ -102,20 +114,19 @@ Tests are configured to run in CI with:
 
 1. **Test Independence**: Each test should be able to run independently
 2. **Descriptive Names**: Use clear, descriptive test names
-3. **Page Object Model**: Consider using POM for complex sites
-4. **Data Cleanup**: Clean up test data after tests
-5. **Explicit Waits**: Use Playwright's built-in waiting mechanisms
+3. **Functional Focus**: Test behavior, not appearance
+4. **Cross-Browser**: Ensure tests work across all supported browsers
+5. **Mobile-Friendly**: Handle mobile layout considerations
+6. **Explicit Waits**: Use Playwright's built-in waiting mechanisms
+7. **Error Testing**: Include negative test cases
 
 ## Troubleshooting
 
 ### Port Already in Use
 If you get a "port already in use" error, the dev server is likely already running. The tests will reuse the existing server.
 
-### Visual Regression Failures
-If visual tests fail due to minor differences:
-1. Review the diff in the HTML report
-2. If changes are intentional, update snapshots
-3. Consider using `threshold` option for minor pixel differences
+### Mobile Navigation Issues
+Mobile tests use direct navigation for some interactions to avoid layout-specific click interception issues.
 
 ### Timeout Issues
 Increase timeouts in `playwright.config.ts` if needed:
@@ -123,4 +134,15 @@ Increase timeouts in `playwright.config.ts` if needed:
 use: {
   timeout: 60000, // 60 seconds
 }
-``` 
+```
+
+## Test Philosophy
+
+This test suite prioritizes:
+- **Functional correctness** over visual perfection
+- **User experience** validation
+- **Cross-browser compatibility**
+- **Performance monitoring**
+- **Accessibility compliance**
+
+By focusing on functional testing, we ensure the sites work reliably for users while maintaining a maintainable test suite that doesn't break due to minor visual changes. 
