@@ -1,0 +1,133 @@
+# Marketing Platform - Cursor Rules
+
+## Project Overview
+This is a monorepo marketing platform using Turborepo to manage multiple marketing websites with shared components and infrastructure.
+
+## Key Technologies
+- **Monorepo**: Turborepo (v2.5+)
+- **Framework**: Next.js 14 with App Router
+- **Styling**: Tailwind CSS (v3) without complex CSS variables
+- **Language**: TypeScript
+- **Testing**: Playwright for E2E tests
+- **Package Manager**: npm with workspaces
+
+## Architecture
+```
+marketing-platform/
+├── apps/           # Individual websites
+├── packages/       # Shared packages
+├── tests/          # E2E tests
+└── tmp/           # Temporary files (gitignored)
+```
+
+### Current State
+- **Apps**: clarkstontechnology (live at :3001)
+- **Packages**: ui (Button component), config (ESLint, TypeScript, Tailwind)
+- **Tests**: Full E2E test suite for clarkstontechnology
+- **Planned Apps**: spiritual-direction, esl-teaching, familee, johnanddinah
+
+## Important Configuration Notes
+
+### Dependencies
+- Use `"*"` instead of `"workspace:*"` for internal dependencies
+- Tailwind plugins must be installed in the config package where tailwind.config.ts lives
+- Always run `npm install` from the root directory
+
+### Next.js App Setup
+- Remove duplicate config files (keep .js not .ts/.mjs versions)
+- Each app needs its own .eslintrc.js with `extends: ['next/core-web-vitals']`
+- Use simple Tailwind classes, avoid CSS variables like `bg-background`
+- Escape apostrophes in JSX with `&apos;`
+
+### Common Issues & Solutions
+
+1. **npm workspace errors**: These appear in dev but don't break functionality - ignore them
+2. **Tailwind plugin errors**: Install @tailwindcss/forms, @tailwindcss/typography, etc. in packages/config
+3. **ESLint import errors**: Add .eslintrc.js to each app with proper Next.js config
+4. **Port conflicts**: Dev server automatically uses 3001 if 3000 is busy
+5. **metadataBase warning**: This is informational only - add metadataBase in layout.tsx for production
+
+## Development Workflow
+
+### Adding New Sites
+1. Copy an existing app directory (e.g., apps/clarkstontechnology)
+2. Update package.json name to @marketing/[sitename]
+3. Update site configuration in src/config/site.ts
+4. Run `npm install` from root
+5. Access at http://localhost:3001 (or next available port)
+
+### Testing
+- **Manual testing**: `npm test` (includes HTML report)
+- **Agent/CI testing**: `npm run test:agent` (line reporter only)
+- **Visual regression**: First run creates baselines, use `--update-snapshots` to update
+
+### Temporary Files
+- Use `tmp/` directory for temporary scripts and experiments
+- This directory is gitignored and won't be committed
+- Clean up tmp files when done
+
+## Best Practices
+
+### Component Development
+- Shared UI components go in packages/ui
+- Use variant-based components with CVA
+- Keep components generic and reusable
+
+### Styling
+- Use Tailwind utility classes directly
+- Avoid custom CSS variables in globals.css
+- Shared Tailwind config in packages/config
+
+### Testing Approach
+- E2E tests go in tests/e2e/
+- Use Playwright's built-in waiting mechanisms
+- Include visual regression tests for key pages
+- Different reporters for agents (line) vs humans (HTML)
+
+### Error Handling
+- Check logs after changes: Look for new errors
+- Build production bundles to catch issues: `npm run build`
+- Run tests to verify functionality: `npm run test:agent`
+
+## Common Commands
+```bash
+# Development
+npm run dev              # Start all apps
+cd apps/[app] && npm run dev  # Start specific app
+
+# Testing  
+npm run test:agent      # Run tests with line reporter
+npm test               # Run tests with HTML report
+npm run test:ui        # Interactive test UI
+
+# Building
+npm run build          # Build all apps
+cd apps/[app] && npm run build  # Build specific app
+
+# Maintenance
+npm run clean          # Clean all build artifacts
+npm install           # Install/update dependencies
+```
+
+## Debugging Tips
+1. If ESLint fails, check for app-specific .eslintrc.js
+2. If Tailwind classes don't work, verify they're standard utilities
+3. If build fails, check for unescaped apostrophes in JSX
+4. If dependencies fail, try removing node_modules and reinstalling
+
+## Critical Path Items
+When working on this project, agents should:
+1. **Always check port 3001** first (3000 is often taken)
+2. **Run `npm run test:agent`** not `npm test` for cleaner output
+3. **Use existing components** from @marketing/ui before creating new ones
+4. **Build after changes** to catch compilation errors early
+5. **Keep CSS simple** - use Tailwind utilities, not custom variables
+
+## Future Considerations
+When adding new features:
+- Keep the monorepo structure clean
+- Ensure new packages follow existing patterns
+- Update tests for new functionality
+- Document any new shared components
+- Consider performance impact of new dependencies
+- Follow the established patterns in clarkstontechnology app 

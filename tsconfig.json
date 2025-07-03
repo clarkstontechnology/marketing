@@ -1,0 +1,12 @@
+{
+  "extends": "./packages/config/tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@marketing/ui": ["./packages/ui/src"],
+      "@marketing/config": ["./packages/config"]
+    }
+  },
+  "include": [],
+  "exclude": ["node_modules", "dist", "build", ".next", ".turbo"]
+} 
