@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Clarkston Technology Website', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3001');
+    await page.goto('http://localhost:3000');
   });
 
   test('homepage loads successfully with all key elements', async ({ page }) => {
@@ -11,7 +11,7 @@ test.describe('Clarkston Technology Website', () => {
 
     // Check main heading
     const heading = page.locator('h1');
-    await expect(heading).toContainText('Fractional CTO & Engineering Leadership');
+    await expect(heading).toContainText('We deliver high value software solutions for your business needs');
 
     // Check navigation is visible
     const nav = page.locator('nav');
@@ -49,11 +49,11 @@ test.describe('Clarkston Technology Website', () => {
 
     // Navigate back to home
     await page.click('nav >> text=Home');
-    await expect(page).toHaveURL(/localhost:3001\/?$/);
+    await expect(page).toHaveURL(/localhost:3000\/?$/);
   });
 
   test('contact form has proper validation', async ({ page }) => {
-    await page.goto('http://localhost:3001/contact');
+    await page.goto('http://localhost:3000/contact');
 
     // Try to submit empty form
     await page.click('button[type="submit"]');
@@ -121,7 +121,7 @@ test.describe('Clarkston Technology Website', () => {
 
 test.describe('Visual Regression Tests', () => {
   test('capture homepage screenshots', async ({ page }) => {
-    await page.goto('http://localhost:3001');
+    await page.goto('http://localhost:3000');
     
     // Full page screenshot
     await expect(page).toHaveScreenshot('homepage-full.png', { 
@@ -136,7 +136,7 @@ test.describe('Visual Regression Tests', () => {
   });
 
   test('capture contact page screenshot', async ({ page }) => {
-    await page.goto('http://localhost:3001/contact');
+    await page.goto('http://localhost:3000/contact');
     
     await expect(page).toHaveScreenshot('contact-page.png', { 
       fullPage: true,
@@ -147,13 +147,13 @@ test.describe('Visual Regression Tests', () => {
   test('capture mobile views', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     
-    await page.goto('http://localhost:3001');
+    await page.goto('http://localhost:3000');
     await expect(page).toHaveScreenshot('homepage-mobile.png', { 
       fullPage: true,
       animations: 'disabled'
     });
 
-    await page.goto('http://localhost:3001/contact');
+    await page.goto('http://localhost:3000/contact');
     await expect(page).toHaveScreenshot('contact-mobile.png', { 
       fullPage: true,
       animations: 'disabled'

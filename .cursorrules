@@ -13,9 +13,9 @@
 
 ### Development Server Management
 - **ALWAYS check if dev server is already running** before starting a new one
-- Port 3001 is typically used (3000 is often taken by other processes)
+- Port 3000 is the default Next.js port (check with `lsof -i :3000`)
 - HMR handles most changes - only restart for config/dependency/env changes
-- Use `lsof -i :3001` to check, `kill -9 <PID>` to kill if needed
+- Use `lsof -i :3000` to check, `kill -9 <PID>` to kill if needed
 
 ### Code Generation Rules
 - Use `"*"` instead of `"workspace:*"` for internal dependencies
@@ -35,7 +35,7 @@
 
 ### Critical Workflow
 1. **Check if dev server is already running** before starting a new one
-2. **Always check port 3001** first (3000 is often taken)
+2. **Always check port 3000** first (Next.js default)
 3. **Run `npm run test:agent`** not `npm test` for cleaner output
 4. **Use existing components** from @marketing/ui before creating new ones
 5. **Build after changes** to catch compilation errors early
@@ -62,3 +62,43 @@ This is a monorepo for multiple marketing websites using:
 
 Current apps: clarkstontechnology
 Planned apps: spiritual-direction, esl-teaching, familee, johnanddinah 
+
+## Testing (NO EXCEPTIONS)
+**ALL projects MUST have unit tests, integration tests, AND end-to-end tests**
+- Only skip if the user EXPLICITLY states to skip writing tests this time
+- Follow TDD for every feature/bugfix:
+  1. Write failing test
+  2. Confirm failure
+  3. Write minimal code to pass
+  4. Confirm success
+  5. Refactor while keeping tests green
+- NEVER mock in end-to-end tests (use real data/APIs)
+- Test output must be PRISTINE - capture and test expected errors
+- NEVER ignore system or test output
+
+## Debugging Process
+**ALWAYS find root cause - NEVER fix symptoms or add workarounds**
+
+### Phase 1 - Investigation:
+- Read error messages carefully
+- Reproduce consistently
+- Check recent changes (git diff, commits)
+
+### Phase 2 - Analysis:
+- Find working examples in codebase
+- Compare against reference implementations
+- Identify differences between working/broken code
+- Understand dependencies
+
+### Phase 3 - Testing:
+- Form single hypothesis about root cause
+- Make smallest possible test change
+- Verify before continuing
+- Say "I don't understand X" vs pretending to know
+
+### Phase 4 - Implementation:
+- Simplest possible failing test case
+- NEVER add multiple fixes at once
+- NEVER claim to implement pattern without reading it completely
+- Test after each change
+- If first fix fails, re-analyze vs adding more fixes 

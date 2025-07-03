@@ -7,7 +7,7 @@ A scalable marketing platform for building and managing multiple websites with s
 This monorepo architecture enables the creation and management of multiple marketing websites while maximizing code reuse and maintaining consistency across all properties.
 
 ### Current Sites
-- **Clarkston Technology** - Fractional CTO and engineering leadership services
+- **[Clarkston Technology Group](apps/clarkstontechnology/README.md)** - IT Services and IT Consulting company (Est. 2004)
 - **Spiritual Direction** (planned) - Spiritual direction practice
 - **ESL Teaching** (planned) - ESL teaching consultation services  
 - **Familee.online** (planned) - Family internet presence and services
@@ -42,21 +42,21 @@ This monorepo architecture enables the creation and management of multiple marke
 
 ```
 marketing-platform/
-├── apps/
-│   ├── clarkstontechnology/    # Fractional CTO site
-│   ├── spiritual-direction/     # Spiritual direction site (planned)
-│   ├── esl-teaching/           # ESL consultation site (planned)
-│   ├── familee/                # Family presence site (planned)
-│   └── johnanddinah/           # Personal couple site (planned)
+├── apps/                       # Each app has its own README.md
+│   ├── clarkstontechnology/    # IT Services & Consulting site
+│   ├── spiritual-direction/    # Spiritual direction site (planned)
+│   ├── esl-teaching/          # ESL consultation site (planned)
+│   ├── familee/               # Family presence site (planned)
+│   └── johnanddinah/          # Personal couple site (planned)
 ├── packages/
-│   ├── ui/                     # Shared UI components
-│   ├── marketing-components/    # Marketing-specific components (planned)
-│   ├── forms/                  # Shared form components (planned)
-│   ├── seo/                    # SEO utilities (planned)
-│   └── config/                 # Shared configurations
+│   ├── ui/                    # Shared UI components
+│   ├── marketing-components/   # Marketing-specific components (planned)
+│   ├── forms/                 # Shared form components (planned)
+│   ├── seo/                   # SEO utilities (planned)
+│   └── config/                # Shared configurations
 └── infrastructure/
-    ├── database/               # Shared database schemas (planned)
-    └── email-templates/        # Email templates (planned)
+    ├── database/              # Shared database schemas (planned)
+    └── email-templates/       # Email templates (planned)
 ```
 
 ## 🚀 Getting Started
@@ -117,12 +117,20 @@ kill -9 <PID>
 killall node
 ```
 
+### Documentation Structure
+
+- **This README**: Monorepo-wide information, shared components, and general development guidelines
+- **App-specific READMEs**: Located in each `apps/[app-name]/README.md` with site-specific details
+- **Package READMEs**: (planned) Documentation for shared packages
+
 ### Adding a New Site
 
 1. Create a new app in the `apps/` directory
 2. Copy the structure from an existing app (e.g., clarkstontechnology)
-3. Update the site configuration in `src/config/site.ts`
-4. Customize components and content as needed
+3. Create a README.md in the new app directory
+4. Update the site configuration in `src/config/site.ts`
+5. Customize components and content as needed
+6. Link the new README from this main README
 
 ### Adding Shared Components
 
@@ -198,6 +206,7 @@ killall node
 4. If dependencies fail, try removing node_modules and reinstalling
 5. Check logs after changes to catch new errors early
 6. Build production bundles to catch compilation issues: `npm run build`
+7. Playwright config uses port 3000 (Next.js default) - update if dev server runs on different port
 
 ## 🎯 Features
 
@@ -233,6 +242,24 @@ When adding new features:
 - Document any new shared components
 - Consider performance impact of new dependencies
 - Follow the established patterns in clarkstontechnology app
+
+## 📝 Recent Updates
+
+### Documentation Restructure (Latest)
+- Created separate READMEs for each app (see [Clarkston Technology Group](apps/clarkstontechnology/README.md))
+- Moved site-specific information to respective app READMEs
+- Main README now focuses on monorepo-wide information
+
+### Agent Guidelines Update
+- Added comprehensive testing requirements to .cursorrules
+- Added detailed debugging process with 4 phases
+- Enforces TDD (Test-Driven Development) for all features/bugfixes
+- Requires unit, integration, AND end-to-end tests for all projects
+- Mandates root cause analysis - no symptom fixes or workarounds
+
+### Platform Updates
+- Fixed Playwright test configuration to use correct port (3000)
+- Updated testing documentation for clearer workflows
 
 ## 🔧 Configuration
 

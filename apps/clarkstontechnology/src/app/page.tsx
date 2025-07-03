@@ -31,11 +31,14 @@ export default function HomePage() {
       <section className="space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
         <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center">
           <h1 className="font-display text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
-            Fractional CTO & Engineering Leadership
+            {siteConfig.tagline}
           </h1>
+          <p className="text-lg text-gray-600">
+            Fractional CTO & Engineering Leadership • Est. {siteConfig.founded} • {siteConfig.location}
+          </p>
           <p className="max-w-[42rem] leading-normal text-gray-600 sm:text-xl sm:leading-8">
             Expert technology leadership to accelerate your business growth. From startup to scale-up, 
-            I help companies build world-class engineering teams and deliver exceptional software.
+            we help companies build world-class engineering teams and deliver exceptional software solutions.
           </p>
           <div className="space-x-4">
             <Button size="lg" asChild>
@@ -96,8 +99,32 @@ export default function HomePage() {
       <footer className="border-t py-6 md:py-0">
         <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
           <p className="text-center text-sm leading-loose text-gray-600 md:text-left">
-            © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+            © {new Date().getFullYear()} {siteConfig.name}, LLC. All rights reserved.
           </p>
+          <div className="flex gap-4">
+            <a
+              href={siteConfig.links.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-600 hover:text-gray-900"
+            >
+              GitHub
+            </a>
+            <a
+              href={`mailto:${siteConfig.links.email}`}
+              className="text-gray-600 hover:text-gray-900"
+            >
+              Email
+            </a>
+          </div>
         </div>
       </footer>
     </div>

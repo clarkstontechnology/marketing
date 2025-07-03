@@ -1,10 +1,13 @@
 export const siteConfig = {
-  name: 'Clarkston Technology',
+  name: 'Clarkston Technology Group',
+  tagline: 'We deliver high value software solutions for your business needs',
   description: 'Expert fractional CTO services, engineering team leadership, and software development consulting.',
   url: 'https://www.clarkstontechnology.com',
   ogImage: 'https://www.clarkstontechnology.com/og.jpg',
+  location: 'Atlanta, GA',
+  founded: 2004,
   links: {
-    linkedin: 'https://linkedin.com/in/johnlee',
+    linkedin: 'https://www.linkedin.com/company/clarkston-technology-group',
     github: 'https://github.com/clarkstontechnology',
     email: 'john@clarkstontechnology.com',
   },

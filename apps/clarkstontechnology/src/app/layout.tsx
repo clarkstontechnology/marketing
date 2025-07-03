@@ -6,11 +6,12 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://www.clarkstontechnology.com'),
   title: {
-    default: "Clarkston Technology - Fractional CTO & Engineering Leadership",
-    template: "%s | Clarkston Technology",
+    default: "Clarkston Technology Group - Fractional CTO & Engineering Leadership",
+    template: "%s | Clarkston Technology Group",
   },
-  description: "Expert fractional CTO services, engineering team leadership, and software development consulting to accelerate your technology initiatives.",
+  description: "We deliver high value software solutions for your business needs. Expert fractional CTO services, engineering team leadership, and software development consulting.",
   keywords: [
     "fractional CTO",
     "engineering leadership",
@@ -18,21 +19,23 @@ export const metadata: Metadata = {
     "technology consulting",
     "team management",
     "startup advisor",
+    "Atlanta technology consulting",
+    "IT services",
   ],
   authors: [{ name: "John Lee" }],
-  creator: "Clarkston Technology",
+  creator: "Clarkston Technology Group, LLC",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://www.clarkstontechnology.com",
-    title: "Clarkston Technology - Fractional CTO & Engineering Leadership",
-    description: "Expert fractional CTO services, engineering team leadership, and software development consulting.",
-    siteName: "Clarkston Technology",
+    title: "Clarkston Technology Group - Fractional CTO & Engineering Leadership",
+    description: "We deliver high value software solutions for your business needs. Expert fractional CTO services and technology consulting.",
+    siteName: "Clarkston Technology Group",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Clarkston Technology - Fractional CTO & Engineering Leadership",
-    description: "Expert fractional CTO services, engineering team leadership, and software development consulting.",
+    title: "Clarkston Technology Group - Fractional CTO & Engineering Leadership",
+    description: "We deliver high value software solutions for your business needs. Expert fractional CTO services and technology consulting.",
   },
   robots: {
     index: true,
