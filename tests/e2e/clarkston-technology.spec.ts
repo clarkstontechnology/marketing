@@ -11,7 +11,7 @@ test.describe('Clarkston Technology Website', () => {
 
     // Check main heading
     const heading = page.locator('h1');
-    await expect(heading).toContainText('We deliver high value software solutions for your business needs');
+    await expect(heading).toContainText('Your Technology Partner at Every Level');
 
     // Check navigation is visible
     const nav = page.locator('nav');
@@ -30,7 +30,7 @@ test.describe('Clarkston Technology Website', () => {
     // Check services section
     await expect(page.locator('h2:has-text("Services")')).toBeVisible();
     const serviceCards = page.locator('.grid > div');
-    await expect(serviceCards).toHaveCount(4);
+    await expect(serviceCards).toHaveCount(3);
 
     // Check CTA section
     await expect(page.locator('text=Ready to Transform Your Technology?')).toBeVisible();

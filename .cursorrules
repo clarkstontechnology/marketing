@@ -14,7 +14,7 @@
 ### Development Server Management
 - **ALWAYS check if dev server is already running** before starting a new one
 - Port 3000 is the default Next.js port (check with `lsof -i :3000`)
-- HMR handles most changes - only restart for config/dependency/env changes
+- For config changes (site.ts, etc.), restart dev server since SSG needs to regenerate pages
 - Use `lsof -i :3000` to check, `kill -9 <PID>` to kill if needed
 
 ### Code Generation Rules

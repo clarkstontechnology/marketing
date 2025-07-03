@@ -37,8 +37,8 @@ export default function HomePage() {
             Fractional CTO & Engineering Leadership • Est. {siteConfig.founded} • {siteConfig.location}
           </p>
           <p className="max-w-[42rem] leading-normal text-gray-600 sm:text-xl sm:leading-8">
-            Expert technology leadership to accelerate your business growth. From startup to scale-up, 
-            we help companies build world-class engineering teams and deliver exceptional software solutions.
+            Whether you&apos;re launching a startup, scaling a business, or advancing your engineering career, 
+            we provide the strategic guidance and technical expertise to help you succeed.
           </p>
           <div className="space-x-4">
             <Button size="lg" asChild>
@@ -55,28 +55,41 @@ export default function HomePage() {
       <section className="container space-y-6 py-8 md:py-12 lg:py-24">
         <div className="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center">
           <h2 className="font-display text-3xl leading-[1.1] sm:text-3xl md:text-6xl">
-                          Services
-            </h2>
-            <p className="max-w-[85%] leading-normal text-gray-600 sm:text-lg sm:leading-7">
-              Comprehensive technology leadership and development services tailored to your needs.
+            Services
+          </h2>
+          <p className="max-w-[85%] leading-normal text-gray-600 sm:text-lg sm:leading-7">
+            Comprehensive technology leadership and development services tailored to your needs.
           </p>
         </div>
-        <div className="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-2">
-          {siteConfig.services.map((service) => (
+        <div className="mx-auto grid justify-center gap-8 md:max-w-[64rem] md:grid-cols-3">
+          {siteConfig.serviceCategories.map((category) => (
             <div
-              key={service.title}
-              className="relative overflow-hidden rounded-lg border bg-white p-2"
+              key={category.category}
+              className="relative overflow-hidden rounded-lg border bg-white p-6 shadow-sm hover:shadow-md transition-shadow"
             >
-              <div className="flex h-[180px] flex-col justify-between rounded-md p-6">
+              <div className="space-y-4">
                 <div className="space-y-2">
-                  <h3 className="font-bold">{service.title}</h3>
+                  <h3 className="font-bold text-lg">{category.category}</h3>
                   <p className="text-sm text-gray-600">
-                    {service.description}
+                    {category.description}
                   </p>
                 </div>
+                <ul className="space-y-1">
+                  {category.services.map((service) => (
+                    <li key={service.title} className="flex items-start">
+                      <span className="text-blue-600 mr-2">•</span>
+                      <span className="text-sm text-gray-700">{service.title}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           ))}
+        </div>
+        <div className="text-center">
+          <Button variant="outline" size="lg" asChild>
+            <Link href="/services">View All Services</Link>
+          </Button>
         </div>
       </section>
 
